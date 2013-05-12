@@ -171,9 +171,14 @@ let @o='kdddf(f)C;'
 " Plugins
 call pathogen#infect()
 
+" Tab management stuff
+nnoremap <leader>t :tabedit 
+nnoremap <leader>n :tabnext<cr>
+nnoremap <leader>p :tabprevious<cr>
+
+nnoremap <leader>f :FufFile
 " let vimclojure#WantNailgun = 1
 
-nnoremap <leader>t :TlistToggle
 nnoremap <leader><space> :noh<cr>
 
 colorscheme mustang
@@ -188,6 +193,9 @@ nnoremap k j
 nnoremap e k
 nnoremap j e
 nnoremap K J
+" windows
+nnoremap <C-k> <C-w>j
+nnoremap <C-e> <C-w>k
 
 " bracket remappings:
 inoremap [ (
