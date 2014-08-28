@@ -1,10 +1,13 @@
+" An example for a vimrc file.
 "
-" My vim file
+" Maintainer:	Bram Moolenaar <Bram@vim.org>
+" Last change:	2008 Dec 17
 "
-" Stolen in large part from various places on the web
-"
-" Used/Maintained by: Christopher Morton <contact@cgmorton.com>
-
+" To use it, copy it to
+"     for Unix and OS/2:  ~/.vimrc
+"	      for Amiga:  s:.vimrc
+"  for MS-DOS and Win32:  $VIM\_vimrc
+"	    for OpenVMS:  sys$login:.vimrc
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -59,8 +62,8 @@ inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
 vnoremap <F1> <ESC>
 
-" less keystrokes for commands
 nnoremap ; :
+nnoremap : ;
 
 au FocusLost * :wa
 
@@ -68,18 +71,22 @@ au FocusLost * :wa
 inoremap yy <ESC>
 inoremap jj <ESC>
 
-" Split window shortcuts
+" Split window stuff
 nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
+" nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
+" Tab management stuff
+nnoremap <leader>t :tabedit 
+nnoremap <leader>n :tabnext<cr>
+nnoremap <leader>p :tabprevious<cr>
+
+" Set backup
+set backup
+set backupdir=~/.vim/backup/ 
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -149,8 +156,6 @@ if !exists(":DiffOrig")
 		  \ | wincmd p | diffthis
 endif
 
-set backupdir=~/.vim/backup/temp
-
 " Remaps up/down to move view up/down, S-up/down for normal behavior
 map <Down> <C-e>
 map <Up> <C-y>
@@ -160,26 +165,17 @@ map <S-Up> k
 " Create ctags file in current directory
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
-" space = center screen on current line
+" space center screen on current line
 map <Space> zz
 
-" C++ print-debug macro in @p, undo said macro with @o
+" print-debug macro in @p, undo said macro with @o
 let @p='yyP:s/\\/\\\\/ge:s/\"/\\\"/geIstd::cout << "f;C" << std::endl;jIstd::cout << (f;C) << std::endl; // print-debug'
 let @o='kdddf(f)C;'
 
 
-" Plugins
+" Pathogen
+
 call pathogen#infect()
-
-" Tab management stuff
-nnoremap <leader>t :tabedit 
-nnoremap <leader>n :tabnext<cr>
-nnoremap <leader>p :tabprevious<cr>
-
-nnoremap <leader>f :FufFile
-" let vimclojure#WantNailgun = 1
-
-nnoremap <leader><space> :noh<cr>
 
 colorscheme mustang
 
@@ -193,14 +189,10 @@ nnoremap k j
 nnoremap e k
 nnoremap j e
 nnoremap K J
-" windows
 nnoremap <C-k> <C-w>j
 nnoremap <C-e> <C-w>k
 
-" bracket remappings:
-inoremap [ (
-inoremap { )
-inoremap ] [
-inoremap } ]
-inoremap ( {
-inoremap ) }
+
+" FuzzyFinder
+
+nnoremap <leader>f :FufFile
