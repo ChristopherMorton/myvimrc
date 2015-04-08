@@ -157,10 +157,10 @@ if !exists(":DiffOrig")
 endif
 
 " Remaps up/down to move view up/down, S-up/down for normal behavior
-map <Down> <C-e>
-map <Up> <C-y>
-map <S-Down> j
-map <S-Up> k
+map <Down> <C-D>
+map <Up> <C-U>
+map <S-Down> k
+map <S-Up> e
 
 " Create ctags file in current directory
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -168,19 +168,12 @@ map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " space center screen on current line
 map <Space> zz
 
-" print-debug macro in @p, undo said macro with @o
-let @p='yyP:s/\\/\\\\/ge:s/\"/\\\"/geIstd::cout << "f;C" << std::endl;jIstd::cout << (f;C) << std::endl; // print-debug'
-let @o='kdddf(f)C;'
-
-
 " Pathogen
-
 call pathogen#infect()
 
 colorscheme mustang
 
 " Colemak remappings
-" nnoremap l l
 vnoremap k j
 vnoremap e k
 vnoremap j e
@@ -189,10 +182,6 @@ nnoremap k j
 nnoremap e k
 nnoremap j e
 nnoremap K J
+" Windowing
 nnoremap <C-k> <C-w>j
 nnoremap <C-e> <C-w>k
-
-
-" FuzzyFinder
-
-nnoremap <leader>f :FufFile
